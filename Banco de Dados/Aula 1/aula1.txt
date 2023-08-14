@@ -1,0 +1,49 @@
+CRIANDO BANCO DE DADOS:
+
+    CREATE DATABASE <nome-do-banco-de-dados>;
+
+    EXEMPLO:
+
+        CREATE DATABASE ESCOLA;
+
+
+USANDO O BANCO DE DADOS:
+
+    USE <nome-do-banco-de-dados>;
+
+    EXEMPLO:
+
+        CREATE DATABASE ESCOLA;
+        USE ESCOLA;
+
+
+CRIANDO TABELA:
+
+    CREATE TABLE <nome-da-tabela>(
+        <coluna1> <data_type> <restrições>
+        <coluna2> <data_type> <restrições>
+        <coluna3> <data_type> <restrições>
+        <coluna4> <data_type> <restrições>
+    );
+
+    EXEMPLO:
+
+        CREATE DATABASE ESCOLA;
+
+        USE ESCOLA;
+
+        CREATE TABLE ALUNO(
+
+            MATRICULA INT,
+            NOME TEXT,
+            IDADE INT,
+            RESPONSAVEL TEXT,
+            TELEFONE TEXT
+        );
+
+
+RESTRIÇÕES:
+
+    NOT NULL --> VALOR NÃO PODE SER NULO
+    UNIQUE --> VALOR NÃO PODE REPETIR NA TABELA
+    PRIMARY KEY --> IDENTIFICADOR DA TABELA. USADO EM RELACIONAMENTOS COM OUTRAS TABELAS (OBJETOS). INCLUI AS RESTRIÇÕES 'NOT NULL' E 'UNIQUE' JUNTAS
