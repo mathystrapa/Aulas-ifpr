@@ -207,7 +207,11 @@ class Aluno:
         object.responsavel = parent
 
     def __str__(object):
-        return f'\nMatrícula: {object.matricula}\nNome: {object.nome}\nIdade: {object.idade}\nTurma: {object.turma}\nResponsável: {object.responsavel}'
+        if object.responsavel == None:
+        	return f'\nMatrícula: {object.matricula}\nNome: {object.nome}\nIdade: {object.idade}\nTurma: {object.turma}'
+        	
+        else:
+        	return f'\nMatrícula: {object.matricula}\nNome: {object.nome}\nIdade: {object.idade}\nTurma: {object.turma}\nResponsável: {object.responsavel}'
     
 
 def get_info_student():
@@ -272,9 +276,11 @@ def get_info_student():
 
         else:
             pai = None
+            break
 
-    return matricula, nome, idade, turma, pai
+    return [matricula, nome, idade, turma, pai]
 
-    
-aluno1 = Aluno(get_info_student())   # CONSERTAR
-print(aluno1)
+   
+matricula, nome, idade, turma, responsavel = get_info_student()
+aluno1 = Aluno(matricula, nome, idade, turma, responsavel)
+print('\nConfira as informações do aluno:', aluno1)
