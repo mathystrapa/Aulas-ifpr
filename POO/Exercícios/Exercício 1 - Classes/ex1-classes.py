@@ -232,11 +232,15 @@ def get_info_student():
     while True:
         try:
             nome = input('Nome completo: ')
-            if len(nome.split(' ')) < 2:
-                print('\nErro. Insira nome e sobrenome.\n')
-
+            if check_if_there_are_numbers(nome):
+                print('\nErro. Insira um nome válido (sem números).\n')
+            
             else:
-                break
+                if len(nome.split(' ')) < 2:
+                    print('\nErro. Insira nome e sobrenome.\n')
+
+                else:
+                    break
 
         except:
             print('\nErro. Insira um nome válido.\n')
@@ -284,3 +288,66 @@ def get_info_student():
 matricula, nome, idade, turma, responsavel = get_info_student()
 aluno1 = Aluno(matricula, nome, idade, turma, responsavel)
 print('\nConfira as informações do aluno:', aluno1)
+
+
+# CLASSE PRODUTO
+
+class Produto:
+
+    def __init__(object):
+
+        while True:
+            try:
+                object.cod = input('Código do produto (7 dígitos): ')
+                if len(object.cod) == 7:
+                    break
+                
+                else:
+                    print('\nErro. O código deve possuir exatamente 7 dígitos.\n')
+
+            except:
+                print('\nErro. Insira um código válido.\n')
+
+        while True:
+            try:
+                object.nome = input('Nome do produto: ')
+                break
+
+            except:
+                print('\nErro. Insira um nome válido.\n')
+
+        while True:
+            try:
+                object.tipo = input('Categoria: ')
+                break
+            
+            except:
+                print('\nErro. Insira uma categoria válida.\n')
+
+        while True:
+            try:
+                object.preco = round(float(input('Preço: R$')), 2)
+                if object.preco % 0.01 == 0:
+                    break
+
+                else:
+                    print('\nErro. Insira, no máximo, 2 casas após a virgula.\n')
+
+            except:
+                print('\nErro. Preço inválido.\n')
+
+        while True:
+            try:
+                object.peso = round(float(input('Peso (Kilogramas): ')), 1)
+                break
+
+            except:
+                print('\nErro. Peso inválido.\n')
+            
+    def __str__(object):
+        return f'\nCódigo do produto: {object.cod}\nNome: {object.nome}\nCategoria: {object.tipo}\nPreço: {object.preco}\nPeso: {object.peso} KG'
+    
+
+print('\n\nCadastre um produto:\n')
+produto1 = Produto()
+print('\nConfira as informações do produto:\n', produto1)
