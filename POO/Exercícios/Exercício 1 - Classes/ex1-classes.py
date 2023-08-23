@@ -208,10 +208,10 @@ class Aluno:
 
     def __str__(object):
         if object.responsavel == None:
-        	return f'\nMatrícula: {object.matricula}\nNome: {object.nome}\nIdade: {object.idade}\nTurma: {object.turma}'
-        	
+            return f'\nMatrícula: {object.matricula}\nNome: {object.nome}\nIdade: {object.idade}\nTurma: {object.turma}'
+        
         else:
-        	return f'\nMatrícula: {object.matricula}\nNome: {object.nome}\nIdade: {object.idade}\nTurma: {object.turma}\nResponsável: {object.responsavel}'
+            return f'\nMatrícula: {object.matricula}\nNome: {object.nome}\nIdade: {object.idade}\nTurma: {object.turma}\nResponsável: {object.responsavel}'
     
 
 def get_info_student():
