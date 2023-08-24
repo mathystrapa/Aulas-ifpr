@@ -18,8 +18,15 @@ class Contas_a_pagar:
 
         while True:
             try:
-                codigo = input('Código da conta: ')
+                codigo = input('Código da conta (apenas números): ')
+                for character in list(codigo):
+                    if check_if_there_are_numbers(character) == False:
+                        raise ValueError('\nErro. O código deve conter apenas números.\n')
+                    
                 break
+
+            except ValueError:
+                print(ValueError)
 
             except:
                 print('\nErro. Tente novamente.\n')
@@ -27,7 +34,11 @@ class Contas_a_pagar:
         while True:
             try:
                 tipo = input('Tipo da conta (água, luz, gás, etc): ')
-                break
+                if check_if_there_are_numbers(tipo):
+                    print('\nErro. Tente novamente.\n')
+
+                else:
+                    break
 
             except:
                 print('\nErro. Tente novamente.\n')
@@ -54,9 +65,29 @@ class Contas_a_pagar:
 
             except:
                 print('\nErro. Tente novamente.\n')
+
+        while True:
+            try:
+                valor = float(input('Valor: '))
+                if abs(round(valor, 2) - valor) < 0.001:
+                    break
+
+                else:
+                    print('\nErro. Tente novamente.\n')
+
+            except:
+                print('\nErro. Tente novamente.\n')
+
+        while True:
+            try:
+                juros = float(input('Juros diários (%): '))
+                break
+
+            except:
+                print('\nErro. Tente novamente.\n')
+
+        new_account = classe(codigo, tipo, data, valor, juros)
                     
-
-
 
 def check_if_there_are_numbers(string):
 
