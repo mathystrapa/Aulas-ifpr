@@ -11,7 +11,7 @@ class Contas_a_pagar:
         object.juros_diarios = daiy_interest
 
     def __str__(object):
-        return f'\nCódigo: {object.codigo}\nTipo: {object.tipo}\nData de validade: {object.data_validade}\nValor: {object.valor}\nJuros diários: {object.juros_diarios}%'
+        return f'\nCódigo: {object.codigo}\nTipo: {object.tipo}\nData de validade: {object.data_validade}\nValor: R${object.valor}\nJuros diários: {object.juros_diarios}%'
     
     @classmethod    # DEFINE A FUNÇÃO A SEGUIR COMO UM MÉTODO DE CLASSE (OPERA NA PRÓPRIA CLASSE, NÃO NA INSTÂNCIA DO OBJETO. PODE ACESSAR OUTROS MÉTODOS OU ATRIBUTOS DA CLASSE)
     def get_bill_info(classe):
@@ -26,7 +26,7 @@ class Contas_a_pagar:
                 break
 
             except ValueError:
-                print(ValueError)
+                print('\nErro. O código deve conter apenas números.\n')
 
             except:
                 print('\nErro. Tente novamente.\n')
@@ -51,9 +51,15 @@ class Contas_a_pagar:
                     data = list(data)
                     for caractere in data:
                         if check_if_there_are_numbers(caractere) == False:
-                            print('\nErro. Tente novamente.\n')
-
-                    data = f'{data[0]}{data[1]}/{data[2]}{data[3]}/{data[4]}{data[5]}{data[6]}{data[7]}'
+                            raise ValueError('\nErro. Tente novamente.\n')
+                            dia = int(data[0] + data[1])
+                            mes = int(data[2] + data[3])
+                            ano = int(data[4] + data[5] + data[6] + data[7])
+                            if dia > 31 or dia < 1 or mes > 12 or mes < 1 or ano < 2023:
+                            	print("\nErro. Data inválida.\n")
+                            else:
+                            	data = f'{data[0]}{data[1]}/{data[2]}{data[3]}/{data[4]}{data[5]}{data[6]}{data[7]}'
+                            	break
 
                 else:
                     padrao = r'^\d{2}[/]{1}\d{2}[/]{1}\d{4}$'
@@ -62,6 +68,9 @@ class Contas_a_pagar:
 
                     else:
                         print('\nErro. Tente novamente.\n')
+                        
+            except ValueError:
+            	print(ValueError)
 
             except:
                 print('\nErro. Tente novamente.\n')
@@ -86,7 +95,7 @@ class Contas_a_pagar:
             except:
                 print('\nErro. Tente novamente.\n')
 
-        new_account = classe(codigo, tipo, data, valor, juros)
+        return classe(codigo, tipo, data, valor, juros)
                     
 
 def check_if_there_are_numbers(string):
@@ -94,3 +103,9 @@ def check_if_there_are_numbers(string):
     for caractere in string:
         if caractere.isdigit():
             return True
+    return False
+            
+            
+print('Insira uma nova conta a pagar: \n')
+nova_conta = Contas_a_pagar.get_bill_info()
+print('\nConfira as informações da conta:\n', nova_conta)
