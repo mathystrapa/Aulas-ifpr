@@ -3,6 +3,7 @@
 class Aluno:
 
     def __init__(object, registration, name, age, turma, parent):
+
         object.matricula = registration
         object.nome = name
         object.idade = age
@@ -40,8 +41,8 @@ def get_info_student():
             else:
                 print('\nErro. A matrícula deve conter 8 números.\n')
 
-        except ValueError:
-            print(ValueError)
+        except ValueError as erro:
+            print(erro.args[0])
 
         except:
             print('\nErro. Insira um código de matrícula válido.\n')
