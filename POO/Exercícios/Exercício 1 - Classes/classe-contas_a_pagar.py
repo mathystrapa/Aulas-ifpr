@@ -52,28 +52,33 @@ class Contas_a_pagar:
                     for caractere in data:
                         if check_if_there_are_numbers(caractere) == False:
                             raise ValueError('\nErro. Tente novamente.\n')
-                            dia = int(data[0] + data[1])
-                            mes = int(data[2] + data[3])
-                            ano = int(data[4] + data[5] + data[6] + data[7])
-                            if dia > 31 or dia < 1 or mes > 12 or mes < 1 or ano < 2023:
-                            	print("\nErro. Data inválida.\n")
-                            else:
-                            	data = f'{data[0]}{data[1]}/{data[2]}{data[3]}/{data[4]}{data[5]}{data[6]}{data[7]}'
-                            	break
-
+                    dia = int(data[0] + data[1])
+                    mes = int(data[2] + data[3])
+                    ano = int(data[4] + data[5] + data[6] + data[7])
+                    if dia > 31 or dia < 1 or mes > 12 or mes < 1 or ano < 2023:
+                        print("\nErro. Data inválida.\n")
+                    else:
+                        data = f'{data[0]}{data[1]}/{data[2]}{data[3]}/{data[4]}{data[5]}{data[6]}{data[7]}'
+                        break
                 else:
                     padrao = r'^\d{2}[/]{1}\d{2}[/]{1}\d{4}$'
                     if re.match(padrao, data):
-                        break
-
+                        data = list(data)
+                        dia = int(data[0] + data[1])
+                        mes = int(data[3] + data[4])
+                        ano = int(data[6] + data[7] + data[8] + data[9])
+                        if dia > 31 or dia < 1 or mes > 12 or mes < 1 or ano < 2023:
+                            print("\nErro. Data inválida (a validade deve ser posterior ao dia de hoje).\n")
+                        else:
+                            data = f'{data[0]}{data[1]}/{data[3]}{data[4]}/{data[6]}{data[7]}{data[8]}{data[9]}'
+                            break
                     else:
                         print('\nErro. Tente novamente.\n')
-                        
             except ValueError:
-            	print(ValueError)
-
+                print(ValueError)
             except:
                 print('\nErro. Tente novamente.\n')
+
 
         while True:
             try:
@@ -104,6 +109,14 @@ def check_if_there_are_numbers(string):
         if caractere.isdigit():
             return True
     return False
+
+def remove_spaces_and_special_characters(string):
+    clean_string = ''
+    for character in string:
+        if character not in ['', ' ', ',', '.', '-', '(', ')', '+', '/', '\\']:
+            clean_string += character
+
+    return clean_string
             
             
 print('Insira uma nova conta a pagar: \n')

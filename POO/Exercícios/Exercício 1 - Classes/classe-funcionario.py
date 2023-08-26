@@ -39,15 +39,15 @@ class Funcionario:
                 if len(object.cod) == 6:
                     for caractere in list(object.cod):
                         if check_if_there_are_numbers(caractere) == False:
-                            raise ValueError('\nErro. O código deve possuir somente números.\n')
+                            raise ValueError
                     
                     break
 
                 else:
-                    print('\nErro. O código de funcionário possui exatamente 6 dígitos.\n')
+                    print('\nErro. O código deve possuir somente caracteres numéricos.\n')
 
             except ValueError:
-                print(ValueError)
+                print('\nErro. Código inválido.\n')
 
             except:
                 print('\nErro. Insira um código válido.\n')
@@ -88,7 +88,7 @@ class Funcionario:
 def remove_spaces_and_special_characters(string):
     clean_string = ''
     for character in string:
-        if character not in ['', ' ', ',', '.', '-', '(', ')', '+']:
+        if character not in ['', ' ', ',', '.', '-', '(', ')', '+', '/', '\\']:
             clean_string += character
 
     return clean_string
