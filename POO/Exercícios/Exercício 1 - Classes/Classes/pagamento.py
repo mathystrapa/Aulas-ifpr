@@ -17,94 +17,95 @@ class Pagamento:
         return f'\nINFORMAÇÕES DO PAGAMENTO:\nCÓDIGO: {object.codigo}\nDATA: {object.data}\nPAGADOR: {object.pagador}\nDESTINATÁRIO: {object.destinatario}\nVALOR: R${object.valor}'
     
 
-def check_date(date):   # FUNÇÃO PARA VERIFICAR SE UMA DATA É VÁLIDA
+if __name__ == '__main__':
+    def check_date(date):   # FUNÇÃO PARA VERIFICAR SE UMA DATA É VÁLIDA
 
-    try:
-        date = datetime.datetime.strptime(date, '%d%m%Y')
-        return True
-    except:
         try:
-            date = datetime.datetime.strptime(date, '%d-%m-%Y')
+            date = datetime.datetime.strptime(date, '%d%m%Y')
             return True
         except:
             try:
-                date = datetime.datetime.strptime(date, '%d/%m/%Y')
+                date = datetime.datetime.strptime(date, '%d-%m-%Y')
                 return True
             except:
-                return False
-    
+                try:
+                    date = datetime.datetime.strptime(date, '%d/%m/%Y')
+                    return True
+                except:
+                    return False
+        
 
-def get_payment_info():
+    def get_payment_info():
 
-    print('\nInsira as informações do pagamento:\n')
+        print('\nInsira as informações do pagamento:\n')
 
-    while True:
-        try:
-            codigo = input('Código (7 dígitos): ')
-            if codigo.isdigit():
-                if len(codigo) == 7:
-                    break
+        while True:
+            try:
+                codigo = input('Código (7 dígitos): ')
+                if codigo.isdigit():
+                    if len(codigo) == 7:
+                        break
+                    else:
+                        print(f'\nErro. O código deve conter exatamente 7. O código informado possui {len(codigo)} dígitos.\n')
                 else:
-                    print(f'\nErro. O código deve conter exatamente 7. O código informado possui {len(codigo)} dígitos.\n')
-            else:
-                print('\nErro. O código deve conter somente caracteres numéricos.\n')
+                    print('\nErro. O código deve conter somente caracteres numéricos.\n')
 
-        except:
-            print('\nErro. Tente novamente.\n')
+            except:
+                print('\nErro. Tente novamente.\n')
 
-    while True:
-        data = input('Data: ')
-        if check_date(data):
-            break
-        else:
-            print('\nErro. Tente novamente.\n')
-
-    while True:
-        try:
-            pagador = input('Nome do pagador: ').upper()
-            for caractere in pagador:
-                if caractere.isdigit():
-                    raise ValueError('\nErro. Apenas letras.\n')
-            break
-
-        except ValueError as erro:
-            print(erro.args[0])
-
-        except:
-            print('\nErro. Tente novamente.\n')
-                    
-    while True:
-        try:
-            destinatario = input('Destinatário: ').upper()
-            for caractere in destinatario:
-                if caractere.isdigit():
-                    raise ValueError('\nErro. Apenas letras.\n')
-            break
-
-        except ValueError as erro:
-            print(erro.args[0])
-
-        except:
-            print('\nErro. Tente novamente.\n')
-
-    while True:
-        try:
-            valor = float(input('Valor: R$'))
-            if abs(valor - round(valor, 2)) < 0.00001:
-                valor = round(valor, 2)
+        while True:
+            data = input('Data: ')
+            if check_date(data):
                 break
             else:
-                raise ValueError('\nErro. Insira até 2 casas decimais.\n')
-            
-        except ValueError as erro:
-            print(erro.args[0])
+                print('\nErro. Tente novamente.\n')
 
-        except:
-            print('\nErro. Tente novamente.\n')
+        while True:
+            try:
+                pagador = input('Nome do pagador: ').upper()
+                for caractere in pagador:
+                    if caractere.isdigit():
+                        raise ValueError('\nErro. Apenas letras.\n')
+                break
 
-    return codigo, data, pagador, destinatario, valor
+            except ValueError as erro:
+                print(erro.args[0])
+
+            except:
+                print('\nErro. Tente novamente.\n')
+                        
+        while True:
+            try:
+                destinatario = input('Destinatário: ').upper()
+                for caractere in destinatario:
+                    if caractere.isdigit():
+                        raise ValueError('\nErro. Apenas letras.\n')
+                break
+
+            except ValueError as erro:
+                print(erro.args[0])
+
+            except:
+                print('\nErro. Tente novamente.\n')
+
+        while True:
+            try:
+                valor = float(input('Valor: R$'))
+                if abs(valor - round(valor, 2)) < 0.00001:
+                    valor = round(valor, 2)
+                    break
+                else:
+                    raise ValueError('\nErro. Insira até 2 casas decimais.\n')
+                
+            except ValueError as erro:
+                print(erro.args[0])
+
+            except:
+                print('\nErro. Tente novamente.\n')
+
+        return codigo, data, pagador, destinatario, valor
 
 
-codigo, data, pagador, destino, valor = get_payment_info()
-novo_pagamento = Pagamento(codigo, data, pagador, destino ,valor)
-print(novo_pagamento)
+    codigo, data, pagador, destino, valor = get_payment_info()
+    novo_pagamento = Pagamento(codigo, data, pagador, destino ,valor)
+    print(novo_pagamento)

@@ -86,5 +86,6 @@ class Eletrodomestico:
         return f'\nINFORMAÇÕES DO ELETRODOMÉSTICO:\n\nCódigo: {self.codigo}\nNome: {self.nome}\nTipo: {self.tipo}\nPreço: {self.valor}\nPeso: {self.peso} kilogramas'
     
 
-eletrodomestico1 = Eletrodomestico.get_info()
-print(eletrodomestico1.check_info())
+if __name__ == '__main__':
+    eletrodomestico1 = Eletrodomestico.get_info()
+    print(eletrodomestico1.check_info())

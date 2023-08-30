@@ -106,7 +106,8 @@ def check_date(date):   # FUNÇÃO PARA VERIFICAR SE UMA DATA É VÁLIDA
             except:
                 return False
             
-            
-print('Insira uma nova conta a pagar: \n')
-nova_conta = Contas_a_pagar.get_bill_info()
-print('\nConfira as informações da conta:\n', nova_conta)
+
+if __name__ == '__main__':
+    print('Insira uma nova conta a pagar: \n')
+    nova_conta = Contas_a_pagar.get_bill_info()
+    print('\nConfira as informações da conta:\n', nova_conta)

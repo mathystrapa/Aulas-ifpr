@@ -94,6 +94,6 @@ class Smartphone:
 
         return cls(codigo, marca, modelo, cor, ano, memoria, ram)
     
-
-celular = Smartphone.get_smartphone_info()
-print(celular)
+if __name__ == '__main__':
+    celular = Smartphone.get_smartphone_info()
+    print(celular)

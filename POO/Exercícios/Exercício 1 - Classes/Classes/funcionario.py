@@ -100,6 +100,7 @@ def check_if_there_are_numbers(string):
             return True
     
     return False
-    
-funcionario1 = Funcionario()
-print('\nConfira as informações do funcionário: ', funcionario1)
+
+if __name__ == '__main__':    
+    funcionario1 = Funcionario()
+    print('\nConfira as informações do funcionário: ', funcionario1)

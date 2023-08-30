@@ -71,6 +71,7 @@ def check_if_there_are_numbers(string):
     
     return False    
 
-print('\n\nCadastre um produto:\n')
-produto1 = Produto()
-print('\nConfira as informações do produto:\n', produto1)
+if __name__ == '__main__':
+    print('\n\nCadastre um produto:\n')
+    produto1 = Produto()
+    print('\nConfira as informações do produto:\n', produto1)
