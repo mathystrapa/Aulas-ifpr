@@ -1,7 +1,6 @@
 class String:
 
     def __init__(string):
-        print('\nteste\n')
         string.txt = input('Insira uma string: ')
 
     def __str__(string):
@@ -11,6 +10,7 @@ class String:
         string = self.txt
         upper_string = ''
         for caractere in string:
+
             if caractere == 'a':
                 upper_string += 'A'
             elif caractere == 'b':
@@ -68,7 +68,9 @@ class String:
 
         return upper_string
     
-    def caixa_baixa(string):
+    def caixa_baixa(self):
+        string = self.txt
+        print(string)
         lower_string = ''
 
         for caractere in string:
@@ -128,3 +130,10 @@ class String:
                 lower_string += caractere
 
         return lower_string
+    
+if __name__ == "__main__":
+
+    string_teste = String()
+    print('\nString inserida:', string_teste)
+    print('\nString em caixa alta:', string_teste.caixa_alta())
+    print('\nString em caixa baixa:', string_teste.caixa_baixa())
