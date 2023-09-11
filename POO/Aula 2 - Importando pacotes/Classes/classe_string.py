@@ -70,7 +70,6 @@ class String:
     
     def caixa_baixa(self):
         string = self.txt
-        print(string)
         lower_string = ''
 
         for caractere in string:
