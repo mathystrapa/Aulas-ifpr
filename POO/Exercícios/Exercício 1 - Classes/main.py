@@ -7,6 +7,7 @@ from Classes.pessoa import Pessoa
 from Classes.produto import Produto
 from Classes.smartphone import Smartphone
 from Classes.veiculo import Veículo
+from Classes.computador import Computador
 
 aluno1 = Aluno(12345678, 'Matheus Strapasson', 17, 'Info22', 'Marinês Strapasson')
 conta1 = Contas_a_pagar.get_bill_info()
@@ -17,6 +18,7 @@ pessoa1 = Pessoa('Matheus Strapasson', 17, 'M', 182, 78, '126133782', '091350529
 produto1 = Produto()
 smartphone1 = Smartphone.get_smartphone_info()
 veiculo1 = Veículo('Carro', 'Chevrolet', 'Camaro', '2007', 'ABC1D234')
+computador1 = Computador(12345, 'SAMSUNG', 400, 16, 2579.9)
 
 print('\nAluno:\n',aluno1)
 print('\nConta:\n',conta1)
@@ -27,3 +29,4 @@ print('\nPessoa:\n', pessoa1)
 print('\nProduto:\n',produto1)
 print('\nSmartphone:\n',smartphone1)
 print('\nVeículo:\n',veiculo1)
+print('\nComputador:\n',computador1)
