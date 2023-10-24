@@ -1,5 +1,6 @@
 import tkinter as tk
 import mysql.connector
+import re
 
 connection = mysql.connector.connect(
     host='localhost',
@@ -20,13 +21,34 @@ def abrir_pessoa():
 
     def get_person_info():
 
-        cpf = entry_cpf.get()
-        nome = entry_nome.get()
-        data_nasc = entry_nasc.get()
-        sexo = entry_sexo.get()
+        try:
 
-        cursor.execute(f'INSERT INTO PESSOAS(CPF, NOME, DATA_NASC, SEXO) VALUES ({cpf}, {nome}, {data_nasc}, {sexo})')
-        janela_pessoa.quit()
+            cpf = entry_cpf.get()
+            nome = entry_nome.get()
+            data_nasc = entry_nasc.get()
+            sexo = entry_sexo.get().upper()
+
+            padrao_data = r'\d{4}-\d{2}-\d{2}'
+            padrao_cpf = r'\d{11}'
+
+            if re.match(padrao_cpf, cpf) == False:
+                raise ValueError(1, 'CPF inválido. Insira 11 dígitos numéricos')
+            
+            elif re.match(padrao_data, data_nasc) == False:
+                raise ValueError(2, 'Data de nascimento inválida. Insira no formato aaaa-mm-dd.')
+            
+            elif data_nasc != 'M' and data_nasc != 'F':
+                raise ValueError(3, 'Sexo inválido. Insira \"M\" ou \"F\".')
+            
+            cursor.execute(f'INSERT INTO PESSOAS(CPF, NOME, DATA_NASC, SEXO) VALUES ({cpf}, {nome}, {data_nasc}, {sexo})')
+            janela_pessoa.quit()
+            connection.commit()
+            
+        except ValueError as erro:
+
+            error = tk.Toplevel(janela_pessoa)
+            error_message = tk.Label(error, text=erro.args[1])
+            error_message.pack()
 
     janela_pessoa = tk.Toplevel(root)
     janela_pessoa.title('Cadastro de pessoa')
@@ -142,3 +164,6 @@ pagamento_button.pack()
 
 
 root.mainloop()
+
+cursor.close()
+connection.close()
