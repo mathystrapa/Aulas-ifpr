@@ -81,3 +81,35 @@ INSERINDO DADOS EM UMA TABELA:
         (MATRICULA3, 'NOME3', IDADE3, 'RESPONSAVEL3', 'TELEFONE3', 'TURMA3'),
         ...
         (MATRICULAn, 'NOMEn', IDADEn, 'RESPONSAVELn', 'TELEFONEn', 'TURMAn');
+
+
+SELECIONANDO LINHAS DE UMA TABELA:
+
+    SELECT <COLUNAS> FROM <TABELA> WHERE <CONDIÇÃO> ORDER BY <COLUNA BASE DA ORDENAÇÃO>
+
+    EXEMPLO:
+
+        CREATE TABLE ALUNOS(
+            
+            MATRICULA INT AUTO_INCREMENT PRIMARY KEY,
+            NOME VARCHAR(200) NOT NULL,
+            IDADE INT NOT NULL CHECK (IDADE >= 15),
+            NOME_RESPONSAVEL VARCHAR(200) NOT NULL,
+            TURMA VARCHAR(10)
+        );
+
+        INSERT INTO ALUNOS (NOME, IDADE, NOME_RESPONSAVEL, TURMA) 
+        VALUES
+        ('Ana Silva', 16, 'Carlos Silva', 'A1'),
+        ('Pedro Santos', 15, 'Mariana Santos', 'B2'),
+        ('Juliana Oliveira', 17, 'Roberto Oliveira', 'A3'),
+        ('Lucas Pereira', 16, 'Fernanda Pereira', 'B1'),
+        ('Mariana Costa', 15, 'Ricardo Costa', 'A2'),
+        ('Fernando Lima', 16, 'Camila Lima', 'B3'),
+        ('Isabela Souza', 17, 'Felipe Souza', 'A1'),
+        ('Rafael Martins', 15, 'Ana Martins', 'B2'),
+        ('Carolina Santos', 16, 'Thiago Santos', 'A3'),
+        ('Gustavo Oliveira', 17, 'Patrícia Oliveira', 'B1');
+
+        SELECT (MATRICULA, NOME, IDADE) FROM ALUNOS WHERE (IDADE == 16) ORDER BY NOME;
+        # o resultado será uma tabela de colunas MATRICULA, NOME e IDADE com linhas preenchidas somente pelos alunos com 16 anos ordenados em ordem alfabética.
